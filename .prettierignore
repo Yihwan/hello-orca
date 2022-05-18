@@ -1,0 +1,6 @@
+.expo
+.expo-shared 
+.git
+.github
+node_modules
+assets
