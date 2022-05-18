@@ -1,6 +1,6 @@
 # Hello Orca 
 ```
-git clone 
+git clone git@github.com:Yihwan/hello-orca.git
 cd hello-orca 
 yarn && yarn start
 ```
