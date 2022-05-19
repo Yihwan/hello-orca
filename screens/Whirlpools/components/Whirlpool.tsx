@@ -25,6 +25,7 @@ const Whirlpool = ({
 
   useEffect(() => {
     const fetchPoolData = async () => {
+      // const poolData = { tickCurrentIndex: 123 }
       const poolData = (await orcaClient.getPool(whirlpool.address)).getData();
       setTickCurrentIndex(poolData.tickCurrentIndex);
     };
