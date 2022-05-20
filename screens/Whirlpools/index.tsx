@@ -2,10 +2,10 @@ import { useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { Center, HStack, Spinner, Heading } from 'native-base';
 
-import Whirlpool from './components/Whirlpool';
+import WhirlpoolCard from './components/WhirlpoolCard';
 import useWhirlpools from '../../hooks/useWhirlpools';
 
-const Whirlpools = () => {
+const Whirlpools = ({ navigation }) => {
   const { isLoading, whirlpools, error } = useWhirlpools();
   const [viewableWhirlpoolAddresses, setViewableWhirlpoolAddresses] = useState<
     string[]
@@ -54,9 +54,13 @@ const Whirlpools = () => {
       data={sortedWhirlpools}
       keyExtractor={({ address }) => address}
       renderItem={({ item }) => (
-        <Whirlpool
+        <WhirlpoolCard
           whirlpool={item}
           isViewable={viewableWhirlpoolAddresses.includes(item.address)}
+          handleNavigation={() => navigation.navigate("WhirlpoolDetail", {
+            poolAddress: item.address,
+            name: `${item.tokenMintA?.symbol}/${item.tokenMintB?.symbol}`,
+          })}
         />
       )}
       viewabilityConfig={{

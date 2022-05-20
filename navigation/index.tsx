@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 
 import Whirlpools from '../screens/Whirlpools';
+import WhirlpoolDetail from '../screens/WhirlpoolDetail';
 
 export default function Navigation() {
   return (
@@ -26,8 +27,11 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
   return (
     // @ts-ignore TODO fix type issue: https://stackoverflow.com/questions/71816116/stack-navigator-cannot-be-used-as-a-jsx-component
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Whirlpools">
       <Stack.Screen name="Whirlpools" component={Whirlpools} />
+      <Stack.Screen name="WhirlpoolDetail" component={WhirlpoolDetail} 
+        options={({ route }) => ({ title: route?.params?.name })}
+      />
     </Stack.Navigator>
   );
 }
