@@ -26,10 +26,17 @@ const WhirlpoolCard = ({
   const { tokenMintA, tokenMintB, volume, totalApr } = whirlpool;
   const [tickCurrentIndex, setTickCurrentIndex] = useState<null | number>(null);
 
+  console.log(`WhirlpoolCard rendered ...`)
   useEffect(() => {
     const fetchPoolData = async () => {
-      const poolData = { tickCurrentIndex: 123 }
-      // const poolData = (await orcaClient.getPool(whirlpool.address)).getData();
+      let poolData = { tickCurrentIndex: 123 }
+      
+      try {
+        poolData = (await orcaClient.getPool(whirlpool.address)).getData();
+      } catch(error) {
+        console.log(error)
+      }
+
       setTickCurrentIndex(poolData.tickCurrentIndex);
     };
 
@@ -98,7 +105,7 @@ const WhirlpoolCard = ({
             </Text>
           </HStack>
 
-          {/* {!tickCurrentIndex ? (
+          {!tickCurrentIndex ? (
             <Skeleton h={5} />
           ) : (
             <HStack py={1} justifyContent="space-between">
@@ -109,7 +116,7 @@ const WhirlpoolCard = ({
                 {tickCurrentIndex}
               </Text>
             </HStack>
-          )} */}
+          )}
         </VStack>
       </Pressable>
     </Box>
