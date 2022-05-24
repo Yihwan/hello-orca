@@ -1,9 +1,9 @@
 import {
   Connection,
   Transaction,
-  ConnectionConfig,
+  // ConnectionConfig,
   Keypair
-} from '@solana/web3.js';
+} from './web3.node.esm.js'; // debugging @solana/web3.js
 import {
   buildWhirlpoolClient,
   WhirlpoolContext,
@@ -12,7 +12,7 @@ import {
 } from '@orca-so/whirlpools-sdk';
 
 const CONNECTION_ENDPOINT = 'https://api.mainnet-beta.solana.com';
-const CONNECTION_CONFIG: ConnectionConfig = {
+const CONNECTION_CONFIG = {
   commitment: 'confirmed'
 };
 
@@ -34,5 +34,8 @@ const context = WhirlpoolContext.from(
 );
 const fetcher = new AccountFetcher(context.provider.connection);
 const orcaClient = buildWhirlpoolClient(context, fetcher);
+// const orcaClient = {
+//   getPool: (address) => ({ getData: () => ({ tickCurrentIndex: 12354 })})
+// }
 
 export default orcaClient;
