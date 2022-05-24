@@ -3,7 +3,7 @@ import {
   Transaction,
   // ConnectionConfig,
   Keypair
-} from './web3.esm.js'; // debugging @solana/web3.js
+} from './web3.node.esm.js'; // debugging @solana/web3.js
 import {
   buildWhirlpoolClient,
   WhirlpoolContext,
@@ -23,21 +23,19 @@ const DUMMY_WALLET = {
   async signAllTransactions(txs: Transaction[]) {
     return txs;
   },
-  // publicKey: Keypair.generate().publicKey
-  publicKey: "BesjRKHMdPkTDWJQV4GpyA82EunoozKrEbz21WHZzHQp" // random hardcoded key
+  publicKey: Keypair.generate().publicKey
 };
 
-console.log(new Connection(CONNECTION_ENDPOINT, CONNECTION_CONFIG))
-// const connection = new Connection(CONNECTION_ENDPOINT, CONNECTION_CONFIG);
-// const context = WhirlpoolContext.from(
-//   connection,
-//   DUMMY_WALLET,
-//   ORCA_WHIRLPOOL_PROGRAM_ID
-// );
-// const fetcher = new AccountFetcher(context.provider.connection);
-// const orcaClient = buildWhirlpoolClient(context, fetcher);
-const orcaClient = {
-  getPool: (address) => ({ getData: () => ({ tickCurrentIndex: 12354 })})
-}
+const connection = new Connection(CONNECTION_ENDPOINT, CONNECTION_CONFIG);
+const context = WhirlpoolContext.from(
+  connection,
+  DUMMY_WALLET,
+  ORCA_WHIRLPOOL_PROGRAM_ID
+);
+const fetcher = new AccountFetcher(context.provider.connection);
+const orcaClient = buildWhirlpoolClient(context, fetcher);
+// const orcaClient = {
+//   getPool: (address) => ({ getData: () => ({ tickCurrentIndex: 12354 })})
+// }
 
 export default orcaClient;

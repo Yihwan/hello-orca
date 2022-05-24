@@ -6071,7 +6071,7 @@ class Connection {
    * @param commitmentOrConfig optional default commitment level or optional ConnectionConfig configuration object
    */
   constructor(endpoint, commitmentOrConfig) {
-    console.log('YK: from browser.esm.js lol file')
+    console.log('YK: from browser.esm.js')
     this._commitment = void 0;
     this._confirmTransactionInitialTimeout = void 0;
     this._rpcEndpoint = void 0;
