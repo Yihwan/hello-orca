@@ -26,7 +26,6 @@ const WhirlpoolCard = ({
   const { tokenMintA, tokenMintB, volume, totalApr } = whirlpool;
   const [tickCurrentIndex, setTickCurrentIndex] = useState<null | number>(null);
 
-  console.log(`WhirlpoolCard rendered ...`)
   useEffect(() => {
     const fetchPoolData = async () => {
       let poolData = { tickCurrentIndex: 123 }
